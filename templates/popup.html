@@ -1,0 +1,35 @@
+{% includeJsResource('roadsign/js/Popup.js') %}
+{% includeCssResource('roadsign/css/Popup.css') %}
+
+<div id="roadsign-popup" class="modal fitted" style="display: none;">
+	<div class="body">
+		<div class="texticon search icon">
+			<input class="text nicetext fullwidth" type="text" autocomplete="off" placeholder="Search" autofocus=1>
+		</div>
+		<div class="roadsign-results">
+			<a href="" class="roadsign-pane">
+				<div class="roadsign-group"><span>System</span></div>
+				<div class="roadsign-name"><span>General</span></div>
+			</a>
+		</div><div class="roadsign-results">
+			<a href="" class="roadsign-pane">
+				<div class="roadsign-group"><span>System</span></div>
+				<div class="roadsign-name"><span>General</span></div>
+			</a>
+		</div><div class="roadsign-results">
+			<a href="" class="roadsign-pane">
+				<div class="roadsign-group"><span>System</span></div>
+				<div class="roadsign-name"><span>General</span></div>
+			</a>
+		</div><div class="roadsign-results">
+			<a href="" class="roadsign-pane">
+				<div class="roadsign-group"><span>System</span></div>
+				<div class="roadsign-name"><span>General</span></div>
+			</a>
+		</div>
+</div>
+
+{% set js %}
+new Roadsign.Popup();
+{% endset %}
+{% includeJs js %}

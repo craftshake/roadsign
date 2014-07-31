@@ -1,0 +1,83 @@
+#roadsign-popup
+{
+
+}
+
+#roadsign-popup .body
+{
+	padding: 10px;
+}
+
+.roadsign-results
+{
+	margin-top: 7px;
+}
+
+.roadsign-results .roadsign-pane
+{
+	display: block;
+	margin: 5px 0 0;
+	background: #fff;
+	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	position: relative;
+	padding: 0;
+	border-radius: 2px;
+	background-image: -webkit-linear-gradient(#fafafa, #f3f3f3);
+	background-image: -moz-linear-gradient(#fafafa, #f3f3f3);
+	background-image: -ms-linear-gradient(#fafafa, #f3f3f3);
+	background-image: -o-linear-gradient(#fafafa, #f3f3f3);
+	background-image: linear-gradient(#fafafa, #f3f3f3);
+	cursor: pointer;
+	color: #737e8c;
+}
+
+.roadsign-pane:hover, .roadsign-pane.active
+{
+	text-decoration: none;
+	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+	color: #0d78f2;
+	background-image: -webkit-linear-gradient(#fff6fe, #dfedfd);
+	background-image: -moz-linear-gradient(#fff6fe, #dfedfd);
+	background-image: -ms-linear-gradient(#fff6fe, #dfedfd);
+	background-image: -o-linear-gradient(#fff6fe, #dfedfd);
+	background-image: linear-gradient(#fff6fe, #dfedfd);
+}
+
+.roadsign-pane .roadsign-group, .roadsign-pane .roadsign-name
+{
+	padding: 7px 14px;
+}
+
+.roadsign-pane .roadsign-group
+{
+	position: relative;
+	background: #fff;
+	float: left;
+	margin-right: 20px;
+	padding-right: 10px;
+	border-radius: 2px 0 0 2px;
+}
+
+.roadsign-pane .roadsign-group:after
+{
+	display: block;
+	content: '.';
+	text-indent: -100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: -15px;
+	width: 15px;
+	height: 32px;
+	background-repeat: no-repeat;
+	background-image: url(../images/roadsign-pane-bg.png);
+}
+
+.roadsign-pane .roadsign-name
+{
+
+}
