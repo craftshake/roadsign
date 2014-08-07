@@ -18,6 +18,7 @@ class RoadsignService extends BaseApplicationComponent
 
 		$groups += $this->getSystemSettingsSigns();
 		$groups += $this->getContentSettingsSigns();
+		$groups += $this->getEntriesSigns();
 
 		foreach ($groups as $group => $signs) {
 			foreach ($signs as $sign => $uri) {
@@ -66,6 +67,19 @@ class RoadsignService extends BaseApplicationComponent
 
 	private function getEntriesSigns()
 	{
+		$sections = craft()->sections->getEditableSections();
 
+		$signs = array();
+
+		foreach ($sections as $section) {
+			if ($section->type != 'single' && craft()->userSession->getUser()->can('createEntries:'.$section->id))
+			{
+				$signs[$section->name] = 'entries/' . $section->handle . '/new';
+			}
+		}
+
+		return array(
+			'Entries' => $signs
+		);
 	}
 }

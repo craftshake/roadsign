@@ -47,6 +47,7 @@
 	background-image: -ms-linear-gradient(#fff6fe, #dfedfd);
 	background-image: -o-linear-gradient(#fff6fe, #dfedfd);
 	background-image: linear-gradient(#fff6fe, #dfedfd);
+	font-weight: bold;
 }
 
 .roadsign-pane .roadsign-group, .roadsign-pane .roadsign-name
