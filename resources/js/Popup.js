@@ -64,6 +64,9 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.UP_KEY)
 			{
+				// Make sur the popup is opened
+				if (!this.active) { return; }
+
 				var prev = that.$selected.prev();
 				if (prev.length) {
 					ev.preventDefault();
@@ -74,6 +77,9 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.DOWN_KEY)
 			{
+				// Make sur the popup is opened
+				if (!this.active) { return; }
+
 				var next = that.$selected.next();
 				if (next.length) {
 					ev.preventDefault();
@@ -84,6 +90,9 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.RETURN_KEY)
 			{
+				// Make sur the popup is opened
+				if (!this.active) { return; }
+
 				if (that.$selected != null)
 				{
 					ev.preventDefault();
