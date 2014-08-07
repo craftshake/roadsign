@@ -32,11 +32,12 @@ class RoadsignPlugin extends BasePlugin
 		if (craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() && !craft()->request->isAjaxRequest())
 		{
 			// Let's get all signs
-			// $signs = craft()->roadsign->getAllSigns();
+			$signs = craft()->roadsign->getAllSigns();
 
 			// Render the template
 			$html = craft()->templates->render('Roadsign/popup', array());
 			craft()->templates->includeFootHtml($html);
+			craft()->templates->includeJs('new Roadsign.Popup(' . JsonHelper::encode($signs) . ');');
 		}
 	}
 }
