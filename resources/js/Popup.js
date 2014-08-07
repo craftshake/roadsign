@@ -11,14 +11,13 @@ Roadsign.Popup = Garnish.Base.extend(
 	active: null,
 
 	$modal: null,
+	$selected: null,
 	$input: null,
 	$results: null,
 
 	init: function(signsJSON) {
 		// Populate signs to search through
 		this.signs = signsJSON;
-
-		console.log(this.signs);
 
 		// Let's get those DOM elements
 		this.$modal = $('#roadsign-popup');
@@ -44,8 +43,13 @@ Roadsign.Popup = Garnish.Base.extend(
 		// Initialiase results to display all signs
 		this.updateResults(this.signs);
 
-		// Search when a key is released
-		this.addListener(this.$input, 'keyup', this.search);
+		// Select first result
+		this.select(this.$results.children().first());
+
+		// Search when input text has changed
+		this.$input.on('textchange', function() {
+			that.search();
+		});
 
 		// Listen to the keypresses
 		this.addListener(Garnish.$doc, 'keydown', function(ev)
@@ -58,6 +62,37 @@ Roadsign.Popup = Garnish.Base.extend(
 				// Show modal
 				this.show();
 			}
+			else if (ev.keyCode == Garnish.UP_KEY)
+			{
+				var prev = that.$selected.prev();
+				if (prev.length) {
+					ev.preventDefault();
+
+					// Select previous sign
+					that.select(that.$selected.prev());
+				}
+			}
+			else if (ev.keyCode == Garnish.DOWN_KEY)
+			{
+				var next = that.$selected.next();
+				if (next.length) {
+					ev.preventDefault();
+
+					// Select next sign
+					that.select(that.$selected.next());
+				}
+			}
+			else if (ev.keyCode == Garnish.RETURN_KEY)
+			{
+				if (that.$selected != null)
+				{
+					ev.preventDefault();
+
+					// Go to page
+					window.location.href = that.$selected.attr('href');
+				}
+			}
+
 			return true;
 		});
 	},
@@ -74,11 +109,16 @@ Roadsign.Popup = Garnish.Base.extend(
 		// Clear input field
 		this.$input.val('');
 		this.modal.show();
+
+		// Reset selected result
+		this.select(this.$results.children().first());
 	},
 
 	search: function() {
 		// Make sur the popup is opened
 		if (!this.active) { return; }
+
+		console.log('Searching...');
 
 		// Display all if there is no input
 		if (this.$input.val())
@@ -106,17 +146,32 @@ Roadsign.Popup = Garnish.Base.extend(
 		{
 			this.add(results[i]);
 		}
+
+		// Update modal
 		this.modal.updateSizeAndPosition();
+
+		// Reset selected result
+		this.select(this.$results.children().first());
 	},
 
 	add: function(sign) {
-		var html = '<a href="'+sign.uri+'" class="roadsign-pane"><div class="roadsign-group"><span>'+sign.group+'</span></div><div class="roadsign-name"><span>'+sign.name+'</span></div></a>';
+		var html = '<a href="'+Craft.getUrl(sign.uri)+'" class="roadsign-pane"><div class="roadsign-group"><span>'+sign.group+'</span></div><div class="roadsign-name"><span>'+sign.name+'</span></div></a>';
 		this.$results.append(html);
-	}
+	},
 
+	select: function(element)
+	{
+		if (this.$selected && this.$selected.hasClass('active'))
+		{
+			this.$selected.removeClass('active');
+		}
+
+		element.addClass('active');
+		this.$selected = element;
+	}
 },
 {
-	F_KEY: 70,
+	F_KEY: 80,
 	FUSE_OPTIONS: {
 		keys: ['group', 'name']
 	}
