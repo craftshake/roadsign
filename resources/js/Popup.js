@@ -73,6 +73,13 @@ Roadsign.Popup = Garnish.Base.extend(
 
 					// Select previous sign
 					that.select(that.$selected.prev());
+
+					// Scroll if needed
+					var position = that.$selected.position();
+					console.log(position);
+					if (position.top < 40) {
+						that.$results.scrollTop(that.$results.scrollTop() - 37);
+					}
 				}
 			}
 			else if (ev.keyCode == Garnish.DOWN_KEY)
@@ -86,6 +93,12 @@ Roadsign.Popup = Garnish.Base.extend(
 
 					// Select next sign
 					that.select(that.$selected.next());
+
+					// Scroll if needed
+					var position = that.$selected.position();
+					if (position.top > 310) {
+						that.$results.scrollTop(that.$results.scrollTop() + 37);
+					}
 				}
 			}
 			else if (ev.keyCode == Garnish.RETURN_KEY)
