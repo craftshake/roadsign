@@ -35,9 +35,9 @@ class RoadsignPlugin extends BasePlugin
 			$signs = craft()->roadsign->getAllSigns();
 
 			// Render the template
-			$html = craft()->templates->render('Roadsign/popup', array());
+			$html = craft()->templates->render('Roadsign/modal', array());
 			craft()->templates->includeFootHtml($html);
-			craft()->templates->includeJs('new Roadsign.Popup(' . JsonHelper::encode($signs) . ');');
+			craft()->templates->includeJs('new Roadsign.Modal(' . JsonHelper::encode($signs) . ');');
 		}
 	}
 }

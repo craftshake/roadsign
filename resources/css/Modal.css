@@ -1,9 +1,4 @@
-#roadsign-popup
-{
-
-}
-
-#roadsign-popup .body
+#roadsign-modal .body
 {
 	padding: 10px;
 }

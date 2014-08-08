@@ -2,9 +2,9 @@ var Roadsign = {};
 (function($){
 
 /**
- * Roadsign popup class
+ * Roadsign Modal class
  */
-Roadsign.Popup = Garnish.Base.extend(
+Roadsign.Modal = Garnish.Base.extend(
 {
 	signs: null,
 	modal: null,
@@ -20,7 +20,7 @@ Roadsign.Popup = Garnish.Base.extend(
 		this.signs = signsJSON;
 
 		// Let's get those DOM elements
-		this.$modal = $('#roadsign-popup');
+		this.$modal = $('#roadsign-modal');
 		this.$input = this.$modal.find('input:first');
 		this.$results = this.$modal.find('.roadsign-results:first');
 
@@ -55,7 +55,7 @@ Roadsign.Popup = Garnish.Base.extend(
 		this.addListener(Garnish.$doc, 'keydown', function(ev)
 		{
 			// Check for launch shortcut (CTRL + SHIFT + P)
-			if ((ev.metaKey || ev.ctrlKey) && ev.shiftKey && ev.keyCode == Roadsign.Popup.F_KEY)
+			if ((ev.metaKey || ev.ctrlKey) && ev.shiftKey && ev.keyCode == Roadsign.Modal.P_KEY)
 			{
 				ev.preventDefault();
 
@@ -64,7 +64,7 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.UP_KEY)
 			{
-				// Make sur the popup is opened
+				// Make sur the Modal is opened
 				if (!this.active) { return; }
 
 				var prev = that.$selected.prev();
@@ -76,7 +76,6 @@ Roadsign.Popup = Garnish.Base.extend(
 
 					// Scroll if needed
 					var position = that.$selected.position();
-					console.log(position);
 					if (position.top < 40) {
 						that.$results.scrollTop(that.$results.scrollTop() - 37);
 					}
@@ -84,7 +83,7 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.DOWN_KEY)
 			{
-				// Make sur the popup is opened
+				// Make sur the Modal is opened
 				if (!this.active) { return; }
 
 				var next = that.$selected.next();
@@ -103,14 +102,14 @@ Roadsign.Popup = Garnish.Base.extend(
 			}
 			else if (ev.keyCode == Garnish.RETURN_KEY)
 			{
-				// Make sur the popup is opened
+				// Make sur the Modal is opened
 				if (!this.active) { return; }
 
 				if (that.$selected != null)
 				{
 					ev.preventDefault();
 
-					// Go to page
+					// Jump to page
 					window.location.href = that.$selected.attr('href');
 				}
 			}
@@ -140,7 +139,7 @@ Roadsign.Popup = Garnish.Base.extend(
 	},
 
 	search: function() {
-		// Make sur the popup is opened
+		// Make sur the Modal is opened
 		if (!this.active) { return; }
 
 		console.log('Searching...');
@@ -149,7 +148,7 @@ Roadsign.Popup = Garnish.Base.extend(
 		if (this.$input.val())
 		{
 			// Let's fuzzy search
-			var fuse = new Fuse(this.signs, Roadsign.Popup.FUSE_OPTIONS);
+			var fuse = new Fuse(this.signs, Roadsign.Modal.FUSE_OPTIONS);
 			var results = fuse.search(this.$input.val());
 		}
 		else
@@ -196,7 +195,7 @@ Roadsign.Popup = Garnish.Base.extend(
 	}
 },
 {
-	F_KEY: 80,
+	P_KEY: 80,
 	FUSE_OPTIONS: {
 		keys: ['group', 'name']
 	}
