@@ -119,6 +119,9 @@ Roadsign.Popup = Garnish.Base.extend(
 		this.$input.val('');
 		this.modal.show();
 
+		// Initialiase results to display all signs
+		this.updateResults(this.signs);
+
 		// Reset selected result
 		this.select(this.$results.children().first());
 	},
